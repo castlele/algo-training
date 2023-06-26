@@ -1,5 +1,3 @@
-import Foundation
-
 public class ListNode: CustomStringConvertible {
     public var val: Int
     public var next: ListNode?
@@ -19,22 +17,32 @@ class Solution {
         }
 
         var newHead = revereseList(for: head)
+        var prev: ListNode?
+        var curr = newHead
 
-        return nil
-    }
-
-    func revereseList(for head: ListNode) -> ListNode? {
-        var mutableHead: ListNode? = head
-        var tail: ListNode? = ListNode(head.val)
-
-        while let next = mutableHead?.next {
-            print(tail)
-            mutableHead = mutableHead?.next
-            next.next = tail
-            tail = next
+        for _ in 1..<n {
+            prev = curr
+            curr = curr?.next
         }
 
-        return tail
+        prev == nil ? (newHead = newHead?.next) : (prev?.next = curr?.next)
+
+        return revereseList(for: newHead)
+    }
+
+    func revereseList(for head: ListNode?) -> ListNode? {
+        var curr: ListNode? = head
+        var prev: ListNode?
+        var next: ListNode?
+
+        while curr != nil {
+            next = curr?.next
+            curr?.next = prev
+            prev = curr
+            curr = next
+        }
+
+        return prev
     }
 }
 
@@ -44,6 +52,7 @@ let n3 = ListNode(3, n4)
 let n2 = ListNode(2, n3)
 let n1 = ListNode(1, n2)
 
-let sol = Solution().revereseList(for: n1)
+//let sol = Solution().revereseList(for: n1)
+let sol = Solution().removeNthFromEnd(n1, 1)
 
 print(sol)
