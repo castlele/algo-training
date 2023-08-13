@@ -123,7 +123,8 @@ function GreetTests:test_greet_in_the_night()
 
     assert(greet == expected_greet)
 end
--- MARK: - Tests running
+
+---@MARK: - Tests running
 
 for test_name, test in pairs(GreetTests) do
     print("Running test case: " .. test_name)
