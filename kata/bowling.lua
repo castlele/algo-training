@@ -1,4 +1,4 @@
-require("tests.cbase_test_case")
+require("cluautils.tests.base_test_case")
 
 ---@MARK - Private API
 
@@ -75,25 +75,25 @@ end
 
 BowlingTets = CTestCase
 
-function BowlingTets:test_roll_zero()
+function BowlingTets:set_up()
     NewGame()
+end
 
+---@MARK - Test cases
+
+function BowlingTets:test_roll_zero()
     roll_multiple_times(20, 0)
 
     return GetScore() == 0
 end
 
 function BowlingTets:test_roll_ones()
-    NewGame()
-
     roll_multiple_times(20, 1)
 
     return GetScore() == 20
 end
 
 function BowlingTets:test_spare()
-    NewGame()
-
     roll_spare()
     Roll(3)
     roll_multiple_times(17, 0)
@@ -102,8 +102,6 @@ function BowlingTets:test_spare()
 end
 
 function BowlingTets:test_strike()
-    NewGame()
-
     roll_strike()
     Roll(3)
     Roll(3)
@@ -113,8 +111,6 @@ function BowlingTets:test_strike()
 end
 
 function BowlingTets:test_all_strikes()
-    NewGame()
-
     roll_multiple_times(12, 10)
 
     return GetScore() == 300
