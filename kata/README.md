@@ -1,5 +1,28 @@
 # Katas
 
+## Align lines
+
+Implement aligning of the multiline string by some character. The user can pick the separator by which aligning will be implemented.
+
+INPUT:
+```swift
+let multilineString = """
+SOME_STR: char
+SOME_OTHER_STR: char
+INT_VALUE: int
+"""
+let alignedString = align(multilineString, ":")
+
+print(alignedString)
+```
+
+OUTPUT:
+```swift
+SOME_STR      : char
+SOME_OTHER_STR: char
+INT_VALUE     : int
+```
+
 ## Add Author Comment
 
 Flow:
