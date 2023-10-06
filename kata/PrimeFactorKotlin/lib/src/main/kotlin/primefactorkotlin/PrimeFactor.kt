@@ -11,16 +11,16 @@ class PrimeFactor {
             }
 
             var mutableNumber = number
-            val primeFactors = emptyList<Int>().toMutableList()
+            val result = emptyList<Int>().toMutableList()
 
-            for (currentFactor in 2..3) {
-                while (mutableNumber % currentFactor == 0) {
-                    primeFactors.add(currentFactor)
-                    mutableNumber /= currentFactor
+            for (primeFactor in 2..3) {
+                while (mutableNumber > 1 && mutableNumber % primeFactor == 0) {
+                    result.add(primeFactor)
+                    mutableNumber /= primeFactor
                 }
             }
 
-            return primeFactors
+            return result
         }
     }
 }
