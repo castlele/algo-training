@@ -28,6 +28,10 @@ java {
 
 tasks.named<Test>("test") {
     useJUnitPlatform()
+
+    testLogging {
+        showStandardStreams = true
+    }
 }
 
 tasks.register("genKata") {
@@ -35,9 +39,9 @@ tasks.register("genKata") {
         val kataName = properties["NAME"] as? String ?: throw Exception("No kata name provided")
         val packageName = kataName.replace("-", "")
         val fileName = kataName
-            .replace("-", " ")
-            .let { it.capitalize() }
-            .replace(" ", "")
+            .split("-")
+            .map { it.capitalize() }
+            .joinToString("")
 
         val mainPackage = File("$projectDir/src/main/kotlin/kotlinkatas/$packageName/")
         val testPackage = File("$projectDir/src/test/kotlin/kotlinkatas/$packageName/")
@@ -51,13 +55,11 @@ tasks.register("genKata") {
         solutionFile.createNewFile()
         testFile.createNewFile()
 
-        solutionFile.writeText("""
-package $packageName
+        solutionFile.writeText("""package $packageName
 
 /* solution here */""")
 
-        testFile.writeText("""
-package $packageName
+        testFile.writeText("""package $packageName
 
 import kotlin.test.Test
 
