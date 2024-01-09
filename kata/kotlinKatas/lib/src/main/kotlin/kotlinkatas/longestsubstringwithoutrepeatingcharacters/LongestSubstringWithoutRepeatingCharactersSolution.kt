@@ -10,7 +10,6 @@ class Solution {
 
         while (right < s.count()) {
             val currentChar = s.get(right)
-            println("CHAR: '$currentChar'")
 
             indexMap
                 .get(currentChar)
