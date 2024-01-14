@@ -112,8 +112,6 @@ class PrimesInNumbersTest {
 
         val decomposition = PrimeDecomp.factors(number)
 
-        println(decomposition)
-
         assertEquals(expectedOutput, decomposition)
     }
 }
